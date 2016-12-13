@@ -16,9 +16,9 @@
   </card>
   <autosettle flag="1"/>
   <mpi>
-    <cavv/>
-    <xid/>
-    <eci/>
+    <cavv></cavv>
+    <xid></xid>
+    <eci></eci>
   </mpi>
   <sha1hash></sha1hash>
   <tssinfo>

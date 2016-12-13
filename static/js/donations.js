@@ -34,22 +34,53 @@ $(function () {
    */
   function createCharge() {
     // Send a post request to the charges route
-    $.post('/donations', {
-      card_holder_name: $('#card-holder-name').val(),
-      amount: $('#amount').val(),
-      card_number: $('#card-number').val(),
-      cvv: $('#cvv').val(),
-      card_type: $('#card-type').val(),
-      currency: $('#currency').val(),
-      expiry_month: $('#expiry-month').val(),
-      expiry_year: $('#expiry-year').val()
-    })
-    .done(res => showSuccess(res))
-    .fail(err => handleErrors(err.responseText))
-    .always(function() {
-      $('#submit-btn').prop("disabled", false);
+      if ($('#3d_secure').val() == '1'){
+          $.post('/threedsecure', {
+          card_holder_name: $('#card-holder-name').val(),
+          amount: $('#amount').val(),
+          card_number: $('#card-number').val(),
+          cvv: $('#cvv').val(),
+          card_type: $('#card-type').val(),
+          currency: $('#currency').val(),
+          expiry_month: $('#expiry-month').val(),
+          expiry_year: $('#expiry-year').val()
+        })
+        .done(res => renderResponse(res))
+        .fail(err => handleErrors(err.responseText))
+        .always(function() {
+          $('#submit-btn').prop("disabled", false);
     });
+      }
+    else{
+        $.post('/auth', {
+          card_holder_name: $('#card-holder-name').val(),
+          amount: $('#amount').val(),
+          card_number: $('#card-number').val(),
+          cvv: $('#cvv').val(),
+          card_type: $('#card-type').val(),
+          currency: $('#currency').val(),
+          expiry_month: $('#expiry-month').val(),
+          expiry_year: $('#expiry-year').val()
+        })
+        .done(res => showSuccess(res))
+        .fail(err => handleErrors(err.responseText))
+        .always(function() {
+          $('#submit-btn').prop("disabled", false);
+        });
+      }
   }
+
+    function renderResponse(res) {
+        if(res.message) {
+            showSuccess(res);
+        }
+        else {
+            $('#message-container').html(res);
+            $('#realex-form').hide();
+            $('#spinner-container').hide();
+            $('#message-container').show();
+        }
+    };
 
   /**
    * Shows the user the success message from the realex_handler module
@@ -60,7 +91,7 @@ $(function () {
     // Hide the spinner
     hideSpinner();
     // Show the user the success message
-    showMessage(res);
+    showMessage(res.message);
   };
 
   /**

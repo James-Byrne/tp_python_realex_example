@@ -8,7 +8,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-REALEX_URL = "https://api.realexpayments.com/realex/v1/auth"
+REALEX_URL = os.environ.get("REALEX_URL", "")
+REALEX_VERIFY_SIGNED_URL = os.environ.get("REALEX_VERIFY_SIGNED_URL", "")
+REALEX_VERIFY_ENROLLED_URL = os.environ.get("REALEX_VERIFY_ENROLLED_URL", "")
+REALEX_CALLBACK_URL = os.environ.get("REALEX_CALLBACK_URL", "")
 REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID", "")
 REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET", "")
 

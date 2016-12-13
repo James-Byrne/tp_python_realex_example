@@ -10,6 +10,18 @@
             </div>
         </div>
 
+        {% if message %}
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#realexResponseModal')
+                            .modal('show')
+                            .find('#message-text')
+                            .text('{{ message }}');
+                });
+
+            </script>
+        {% endif %}
+
         <!-- Products -->
         <div class="col-xs-12 products-container">
 
@@ -79,6 +91,7 @@
         </div>
 
         {% include 'realex_form_modal.html' %}
+        {% include 'realex_response_modal.html' %}
 
     </div>
 {% endblock %}
