@@ -8,14 +8,30 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-REALEX_URL = "https://api.testingpays.com/realex/v1/auth"
+TESTINGPAYS_API_KEY = "<insert-your-testing-pays-api-key-here>"
+
+REALEX_URL = "https://api.testingpays.com/{0}/realex/v1/auth".format(TESTINGPAYS_API_KEY)
+
 REALEX_VERIFY_SIGNED_URL = os.environ.get("REALEX_VERIFY_SIGNED_URL",
-                                          "https://api.testingpays.com/realex/v1/3ds_verifysig")
+                                            "https://api.testingpays.com/{0}/realex/v1/3ds_verifysig".format(TESTINGPAYS_API_KEY))
+
 REALEX_VERIFY_ENROLLED_URL = os.environ.get("REALEX_VERIFY_ENROLLED_URL",
-                                            "https://api.testingpays.com/realex/v1/3ds_verifyenrolled")
-REALEX_CALLBACK_URL = os.environ.get("REALEX_CALLBACK_URL", "http://127.0.0.1:8000/threedsverifysig")
-REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID", "<insert-your-realex-id-here>")
-REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET", "<insert-your-realex-shared-secret-key-here>")
+                                            "https://api.testingpays.com/{0}/realex/v1/3ds_verifyenrolled".format(TESTINGPAYS_API_KEY))
+
+REALEX_CALLBACK_URL = os.environ.get("REALEX_CALLBACK_URL",
+                                            "http://127.0.0.1:8000/threedsverifysig")
+
+REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID",
+                                            "30d0b8f9c831bcdb2ae501f37e7f48e4")
+
+REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET",
+                                            "30d0b8f9c831bcdb2ae501f37e7f48e4")
+
+REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID",
+                                            TESTINGPAYS_API_KEY)
+
+REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET",
+                                            "<insert-your-realex-shared-secret-key-here>") #Note you can use any string here when testing against testing pays
 
 STATIC_URL = '/static/'
 
