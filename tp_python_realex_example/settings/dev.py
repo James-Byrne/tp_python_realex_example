@@ -22,12 +22,6 @@ REALEX_CALLBACK_URL = os.environ.get("REALEX_CALLBACK_URL",
                                             "http://127.0.0.1:8000/threedsverifysig")
 
 REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID",
-                                            "30d0b8f9c831bcdb2ae501f37e7f48e4")
-
-REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET",
-                                            "30d0b8f9c831bcdb2ae501f37e7f48e4")
-
-REALEX_MERCHANT_ID = os.environ.get("REALEX_MERCHANT_ID",
                                             TESTINGPAYS_API_KEY)
 
 REALEX_SHARED_SECRET = os.environ.get("REALEX_SHARED_SECRET",
